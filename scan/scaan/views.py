@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.conf import settings
 # Create your views here
 from .models import File
-from .docscanner import scan 
+from .docscanner import getResult
 import os
 import cv2
 
@@ -14,7 +14,7 @@ def home(request):
             obj=File(name=file.name,filepath=file)
             obj.save()
             
-            image=scan(fr"./media/files/{file.name}")
+            image=getResult(fr"./media/files/{file.name}")
             p=r"C:\Users\daali\OneDrive\Desktop\pbl\scan\media\saved"
             if image is None:
                 return redirect("/")
