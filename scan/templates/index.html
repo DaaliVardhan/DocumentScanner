@@ -1,21 +1,52 @@
+{% load static %}
+
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SCAAN | Smart Document Scanner</title>
+    <title>SCAAN | FileUpload</title>
+    <link rel="stylesheet" href="{% static 'css/main.css'%}" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <body>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <div class="container">
+      <nav>
+          <div class="nav-items">
+              <a href="/">HOME</a>
+          </div>
+          <div class="nav-items">
+              <h3>SCAANs   |   Smart Document Scanner</h3> </div>
+          <div class="nav-items">
+          <a href="logout/">
+              Logout
+          </a>
+          </div>
+      </nav>
+  </div>
+    <form method="POST" enctype="multipart/form-data" action="/">
       {% csrf_token %}
-      <input type="file" name="file" id="file" />
-      <input type="submit" value="Submit" />
-    </form>
-    <div>
-      {% if image %}
-      <img src="{{ image }}" alt="image" />
-      {% endif %}
+      <div class="drag-area">
+        {% if image %}
+        <a href={{ image }}><img src={{ image }} alt="image" /><a>
+        {% else %}
+        <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+        <header>Drag & Drop to Upload File</header>
+        <span>OR</span>
+        <button class='button'>Browse File</button>
+        {% endif %}
     </div>
+    <div class="inner-container">
+        {% if image %}
+        <a href={{ image }} class='button' style='text-decoration:none; margin-right:auto;'download>Download<a>
+        <a href="get/" class='button' style='text-decoration:none;margin-left:auto;'>Get All</a>
+        {% endif %}
+        <input type="file" hidden name='file' class='input'/>
+        <input type='submit' hidden value='Submit' class='upload'>
+      </div>
+    </form>
+
+    <script src="{% static 'js/main.js'%}"></script>
   </body>
 </html>

@@ -1,0 +1,140 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: poppins, sans-serif;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  padding: 0 35px;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    90deg,
+    rgba(141, 194, 111, 1) 0%,
+    rgba(118, 184, 82, 1) 50%
+  );
+}
+.wrapper {
+  display: flex;
+  max-width: 1200px;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+.wrapper i {
+  top: 50%;
+  height: 44px;
+  width: 44px;
+  color: #343f4f;
+  cursor: pointer;
+  font-size: 1.15rem;
+  position: absolute;
+  text-align: center;
+  line-height: 44px;
+  background: #fff;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.1s linear;
+}
+.wrapper i:active {
+  transform: translateY(-50%) scale(0.9);
+}
+.wrapper i:hover {
+  background: #f2f2f2;
+}
+.wrapper i:first-child {
+  left: -22px;
+  display: none;
+}
+.wrapper i:last-child {
+  right: -22px;
+}
+.wrapper .carousel {
+  font-size: 0;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+.carousel.dragging {
+  cursor: grab;
+  scroll-behavior: auto;
+}
+.carousel.dragging img {
+  pointer-events: none;
+}
+.carousel img {
+  height: 340px;
+  object-fit:scale-down;
+  user-select: none;
+  margin-left: 14px;
+  width: calc(100% / 3);
+}
+.carousel img:first-child {
+  margin-left: 0;
+}
+@media screen and (max-width: 900px) {
+  .carousel img {
+    width: calc(100% / 2);
+  }
+}
+@media screen and (max-width: 550px) {
+  .carousel img {
+    width: 100%;
+  }
+}
+
+.upper-container{
+  width: 100%;
+  height: 30vh;
+  position: absolute;
+  top:0;
+  /* align-self: flex-start; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-transform:uppercase;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+.container{
+  width: 100vw;
+  height: 10vh;
+  position: fixed;
+  top:0;
+  background: linear-gradient(
+      90deg,
+      rgba(141, 194, 111, 1) 0%,
+      rgba(118, 184, 82, 1) 50%
+  );
+  padding:0.6em;
+  font-family: 'Roboto',sans-serif;
+  font-size: 20px;
+}
+nav{
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+}
+.nav-items{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-items a{
+  text-decoration: none;
+  text-transform: uppercase;
+  color:#fff;
+
+}
+.nav-items a:hover{
+  text-decoration: underline;
+}

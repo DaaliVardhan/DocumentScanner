@@ -1,7 +1,8 @@
 
 import cv2 
 import numpy as np 
-from PIL import Image,ImageEnhance
+# from PIL import Image,ImageEnhance
+import requests
 
 def show(img):
     cv2.imshow("image",img)
@@ -44,11 +45,11 @@ def find_dest(pts):
  
     return order_points(destination_corners)
 
-def scan(path):
+def scan(img):
     # Resize image to workable size
-    img=cv2.imread(path)
-    if img is None:
-        return None 
+    # img=cv2.imread(path)
+    # if img is None:
+    #     return None 
     dim_limit = 1080
     max_dim = max(img.shape)
     if max_dim > dim_limit:
@@ -103,6 +104,9 @@ def scan(path):
     # Perspective transform using homography.
     final = cv2.warpPerspective(orig_img, M, (destination_corners[2][0], destination_corners[2][1]),
                                 flags=cv2.INTER_LINEAR)
+    
+    show(final)
+
     return final
 
 def automatic_brightness_and_contrast(image, clip_hist_percent=.10):
@@ -149,10 +153,12 @@ def automatic_brightness_and_contrast(image, clip_hist_percent=.10):
     auto_result = cv2.convertScaleAbs(image, alpha=alpha, beta=beta)
     return (auto_result, alpha, beta)
 
-def getResult(path):
-    final=scan(path)
-    img,_,_=automatic_brightness_and_contrast(final)
-    return img
+def getResult(image):    
+    final=scan(image)
+    # if final is not None:
+    #     img,_,_=automatic_brightness_and_contrast(final)
+    #     return img
+    return final
 
 # if __name__=="__main__":
 #     try:   

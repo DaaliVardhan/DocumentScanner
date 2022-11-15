@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SCAAN | Login</title>
+ 
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+    <script defer src="{% static 'js/login.js'%}"></script>
+
+   
+  </head>
+  <body>
+    {% for message in messages %}
+      <div class="alert">
+        {{ message }}
+      </div>
+    {% endfor %}
+    <div class="login-page">
+      <div class="form">
+        
+        <form class="login-form" method="POST">
+          {% csrf_token %}
+          <input type="text" placeholder="username" name="username" />
+          <input type="password" placeholder="password" name="password" />
+          <button type="submit" class='login'>login</button>
+          <p class="message">
+            Not registered? <a href="/signup">Create an account</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
